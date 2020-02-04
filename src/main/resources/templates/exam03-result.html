@@ -16,12 +16,12 @@
 	<h1>合計金額</h1>
 	<ul>
 		<li>税抜き価格</li>
-		<li class="total"><span th:text="${#numbers.formatInteger(total1, 4, 'COMMA')}">dummy</span>円</li>
+		<li class="total"><span th:text="${#numbers.formatInteger(withoutTaxTotal, 4, 'COMMA')}">dummy</span>円</li>
 	</ul>
 	<br>
 	<ul>
 		<li>税込み価格</li>
-		<li class="total"><span th:text="${#numbers.formatInteger(total2, 4, 'COMMA')}">dummy</span>円</li>
+		<li class="total"><span th:text="${#numbers.formatInteger(includeTaxTotal, 4, 'COMMA')}">dummy</span>円</li>
 	</ul>
 </body>
 </html>

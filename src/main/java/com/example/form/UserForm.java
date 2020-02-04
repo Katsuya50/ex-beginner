@@ -1,9 +1,18 @@
 package com.example.form;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Range;
+
 public class UserForm {
 	
+	@NotEmpty(message="必ず入力してください")
 	private String name;
+	@NotNull(message="必ず入力してください")
+	@Range(min=0, max=150, message="年齢を入力してください")
 	private String age;
+	@NotEmpty(message="必ず入力してください")
 	private String comment;
 	
 	public Integer getIntAge() {
