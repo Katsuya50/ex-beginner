@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="layout">
+		<p>商品一覧</p>
+		<div class="list">
+			<span th:each=":${}"><span th:text="${}">dummy</span><br></span>
+		</div>
+		<div class="list">
+			<span th:each=":${}"><span th:text="${#numbers.formatInteger(, 1, 'COMMA')}">dummy</span><br></span>
+		</div>
+		<div class="list">
+			<form action="item-and-cart.html" th:action="@{}" method="post">
+				<button>カートへ</button>
+			</form>
+		</div>
+	</div>
+	
+	<div class="layout">
+		<p>ショッピングカート</p>
+		<div ></div>
+	</div>
+</body>
+</html>
