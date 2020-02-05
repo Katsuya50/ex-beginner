@@ -3,26 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/css/item-in-cart.css">
+<style>
+	table{
+		table-layout:fixed;
+		}
+	td{
+		vertical-align:top;
+	}
+	.total{
+		text-align:right;
+		width:110px;
+		}
+	.covering{
+		text-align:center;
+		font-size:20px;
+		font-weight:bold;
+	}
+</style>
 </head>
 <body>
-	<div class="layout">
-		<p>商品一覧</p>
-		<div class="list">
-			<span th:each=":${}"><span th:text="${}">dummy</span><br></span>
-		</div>
-		<div class="list">
-			<span th:each=":${}"><span th:text="${#numbers.formatInteger(, 1, 'COMMA')}">dummy</span><br></span>
-		</div>
-		<div class="list">
-			<form action="item-and-cart.html" th:action="@{}" method="post">
-				<button>カートへ</button>
-			</form>
-		</div>
-	</div>
-	
-	<div class="layout">
-		<p>ショッピングカート</p>
-		<div ></div>
-	</div>
+	<table>
+		<tr>
+			<td colspan="3" class="covering">商品一覧</td>
+			<td colspan="3" class="covering">ショッピングカート</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<form action="item-and-cart.html" th:action="@{/shopping-cart/in-cart}" method="post">
+					<table>
+						<tr th:each="item,status:${application.itemList}">
+							<td th:text="${item.name}">dummy</td>
+							<td><span th:text="${#numbers.formatInteger(item.price, 1, 'COMMA')}">dummy</span>円</td>
+							<td><button name="indexOfItemList" th:value="${status.index}">カートへ</button></td>
+						</tr>
+					</table>
+				</form>
+			</td>
+		
+			<td colspan="3">
+				<form action="item-and-cart.html" th:action="@{/shopping-cart/delete}" method="post">
+					<table>
+						<tr th:each="item,status:${session.itemListInCart}">
+							<td th:text="${item.name}">dummy</td>
+							<td><span th:text="${#numbers.formatInteger(item.price, 1, 'COMMA')}">dummy</span>円</td>
+							<td><button name="indexOfItemList" th:value="${status.index}">削除</button></td>
+						</tr>
+					</table>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4"></td>
+			<td class="total">合計</td>
+			<td class="total"><span th:text="${#numbers.formatInteger(totalPriceInCart, 1, 'COMMA')}">dummy</span>円</td>
+		</tr>
+	</table>
 </body>
 </html>
